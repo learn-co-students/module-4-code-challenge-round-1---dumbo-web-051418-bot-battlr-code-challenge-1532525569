@@ -4,15 +4,34 @@ import BotCard from "../components/BotCard";
 class BotCollection extends React.Component {
   //your code here
 
-  render(){
-  	return (
-  	  <div className="ui four column grid">
+  // renderBotCards = () => {
+  //   this.props.allBots.map((bot) => {
+  //     return <BotCard bot={bot} key={bot.id}/>
+  //   })
+  // }
+  /* map over the fetched data to give to botCard*/
+
+  filterBots = () => {
+    const newArrayBots = this.props.allBots.filter(bot => this.props.allBots.id !== this.props.armyBots.id)
+
+    // if bot id is in the armyBots arr then do not render them
+    return newArrayBots
+
+  }
+
+
+  render() {
+    return (
+      <div className="ui four column grid">
     		<div className="row">
-    		  {/*...and here..*/}
+    		   {this.props.allBots.map((bot) => {
+             return <BotCard bot={bot} key={bot.id} handleClick={this.props.handleClick}/>
+           })}
+
     		  Collection of all bots
     		</div>
   	  </div>
-  	);
+    );
   }
 
 };
